@@ -1,5 +1,3 @@
-
-
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
@@ -11,6 +9,7 @@
 #include <random>
 #include <fstream>
 #include <filesystem>
+#include <chrono>
 
 using namespace std;
 
@@ -31,10 +30,11 @@ double calculateMedian(vector<int>& grades) {
     sort(grades.begin(), grades.end());
 
     if (n % 2 == 0) {
-        
+
         return (grades[n / 2 - 1] + grades[n / 2]) / 2.0;
-    } else {
-       
+    }
+    else {
+
         return grades[n / 2];
     }
 }
@@ -49,11 +49,11 @@ vector<Student> readStudentData(const string& filename) {
 
     vector<Student> students;
 
-    
+
     string header;
     getline(inputFile, header);
 
-    
+
     string firstName, lastName;
     int exam;
     vector<int> homeworkGrades;
@@ -62,17 +62,17 @@ vector<Student> readStudentData(const string& filename) {
         homeworkGrades.clear(); // Clear the previous homework grades
         int grade;
 
-       
+
         for (int i = 0; i < 7; ++i) {
             inputFile >> grade;
             homeworkGrades.push_back(grade);
         }
 
-       
+
         inputFile >> exam;
 
-       
-        students.push_back({firstName, lastName, homeworkGrades, exam});
+
+        students.push_back({ firstName, lastName, homeworkGrades, exam });
     }
 
     inputFile.close();
@@ -86,12 +86,12 @@ int generateRandomNumber(int n, int n1) {
     return dis(gen);
 }
 
-void generateStudents(int numStudents, std::vector<Student>& students) {
+void generateStudents(int numStudents, vector<Student>& students) {
     students.resize(numStudents);
 
     for (int i = 0; i < numStudents; ++i) {
-        students[i].firstName = "Vardas" + std::to_string(i);
-        students[i].lastName = "Pavarde" + std::to_string(i);
+        students[i].firstName = "Vardas" + to_string(i);
+        students[i].lastName = "Pavarde" + to_string(i);
 
         for (int j = 0; j < 7; ++j) {
             students[i].homeworkGrades.push_back(rand() % 10 + 1); // Random grade between 1 and 10
@@ -101,21 +101,32 @@ void generateStudents(int numStudents, std::vector<Student>& students) {
     }
 }
 
-void saveStudentsToFile(const std::vector<Student>& students, int numStudents) {
-    std::ofstream file("kursiokai" + std::to_string(numStudents) + ".txt");
-    file << std::setw(10) << "Vardas" << std::setw(10) << "Pavarde";
+void saveStudentsToFile(const vector<Student>& students, const string& fileName) {
+    ofstream file(fileName);
+    file << setw(10) << "Vardas" << setw(10) << "Pavarde";
     for (int j = 1; j <= 7; ++j) {
-        file << std::setw(10) << "ND" + std::to_string(j);
+        file << setw(10) << "ND" + to_string(j);
     }
-    file << std::setw(10) << "Egz." << std::endl;
+    file << setw(10) << "Egz." << endl;
 
     for (const Student& student : students) {
-        file << std::setw(10) << student.firstName << std::setw(10) << student.lastName;
+        file << setw(10) << student.firstName << setw(10) << student.lastName;
         for (int grade : student.homeworkGrades) {
-            file << std::setw(10) << grade;
+            file << setw(10) << grade;
         }
-        file << std::setw(10) << student.exam << std::endl;
+        file << setw(10) << student.exam << endl;
+    };
+}
+
+void separateStudentsByAverage(const std::vector<Student>& students, std::vector<Student>& badStudents, std::vector<Student>& goodStudents) {
+    for (const Student& student : students) {
+        if (student.avg < 5) {
+            badStudents.push_back(student);
+        }
+        else {
+            goodStudents.push_back(student);
+        }
     }
 }
 
-#endif 
+#endif
