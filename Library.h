@@ -21,23 +21,6 @@ struct Student {
     double avg;
     double med;
 };
-double calculateMedian(vector<int>& grades) {
-    size_t n = grades.size();
-    if (n == 0) {
-        return 0.0;
-    }
-
-    sort(grades.begin(), grades.end());
-
-    if (n % 2 == 0) {
-
-        return (grades[n / 2 - 1] + grades[n / 2]) / 2.0;
-    }
-    else {
-
-        return grades[n / 2];
-    }
-}
 
 vector<Student> readStudentData(const string& filename) {
     ifstream inputFile(filename);
