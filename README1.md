@@ -6,3 +6,4 @@ Su list
 <img width="516" alt="list1" src="https://github.com/Otilija04/1-uzduotis/assets/145570265/8e2d270d-67b4-4ee3-81d0-2b5b295e2de6">
 
 Išvada: greičiau programa veikia su vector konteineriu, nes std:vector saugo elementus šalia vienas kito, todėl konteineryje greičiau randami. List turi daugiau atminties negu vector, todėl list elementui reikia papildomos vietos ir atminties.
+<img width="593" alt="Screenshot 2023-11-08 at 17 40 44" src="https://github.com/Otilija04/1-uzduotis/assets/145570265/a08c640c-bc71-4d35-950e-f6fa6bcfa372">
