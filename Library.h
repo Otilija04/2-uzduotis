@@ -11,7 +11,8 @@
 #include <filesystem>
 #include <chrono>
 
-struct Student {
+class Student {
+public:
     std::string firstName;
     std::string lastName;
     std::list<int> homeworkGrades;
@@ -30,4 +31,4 @@ void saveStudentsToFile(const std::list<Student>& students, const std::string& f
 
 void separateStudentsByAverage(const std::list<Student>& students, std::list<Student>& badStudents, std::list<Student>& goodStudents);
 
-#endif
+#endif 
