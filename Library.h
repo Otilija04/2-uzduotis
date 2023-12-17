@@ -11,7 +11,24 @@
 #include <filesystem>
 #include <chrono>
 
-struct Student {
+class Student {
+public:
+    // Default constructor
+    Student();
+
+    // Parameterized constructor
+    Student(const std::string& firstName, const std::string& lastName,
+            const std::list<int>& homeworkGrades, int exam);
+
+    // Copy constructor
+    Student(const Student& other);
+
+    // Copy assignment operator
+    Student& operator=(const Student& other);
+
+    // Destructor
+    ~Student();
+
     std::string firstName;
     std::string lastName;
     std::list<int> homeworkGrades;
@@ -30,4 +47,4 @@ void saveStudentsToFile(const std::list<Student>& students, const std::string& f
 
 void separateStudentsByAverage(const std::list<Student>& students, std::list<Student>& badStudents, std::list<Student>& goodStudents);
 
-#endif
+#endif 
