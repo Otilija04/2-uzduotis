@@ -13,7 +13,7 @@ bool fileExists(const std::string& fileName) {
 void generateAndSaveStudents(int numStudents, const std::string& fileName, double& fileCreateDuration) {
     if (!fileExists(fileName)) {
         std::list<Student> students;  
-      
+
         auto fileCreateStart = std::chrono::high_resolution_clock::now();
         generateStudents(numStudents, students);
         saveStudentsToFile(students, fileName);
@@ -29,7 +29,7 @@ void generateAndSaveStudents(int numStudents, const std::string& fileName, doubl
 void readAndProcessStudents(const std::string& fileName, double& fileReadDuration, double& fileSortDuration) {
     auto fileReadStart = std::chrono::high_resolution_clock::now();
     std::list<Student> students;  
-  
+
     students = readStudentData(fileName);
     auto fileReadEnd = std::chrono::high_resolution_clock::now();
     fileReadDuration = std::chrono::duration<double>(fileReadEnd - fileReadStart).count();
