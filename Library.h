@@ -13,6 +13,16 @@
 
 class Student {
 public:
+    // Default constructor
+    Student();
+
+    // Parameterized constructor
+    Student(const std::string& firstName, const std::string& lastName,
+            const std::list<int>& homeworkGrades, int exam);
+
+    // Destructor
+    ~Student();
+
     std::string firstName;
     std::string lastName;
     std::list<int> homeworkGrades;
