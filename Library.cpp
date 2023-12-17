@@ -1,5 +1,23 @@
 #include "Library.h"
 
+// Default constructor
+Student::Student() : exam(0), avg(0.0), med(0.0) {
+    // Additional initialization code if needed
+}
+
+// Parameterized constructor
+Student::Student(const std::string& firstName, const std::string& lastName,
+                 const std::list<int>& homeworkGrades, int exam)
+    : firstName(firstName), lastName(lastName), homeworkGrades(homeworkGrades),
+      exam(exam), avg(0.0), med(0.0) {
+    // Additional initialization code if needed
+}
+
+// Destructor
+Student::~Student() {
+    // Cleanup code if needed
+}
+
 std::list<Student> readStudentData(const std::string& filename) {
     std::ifstream inputFile(filename);
     if (!inputFile) {
@@ -73,3 +91,4 @@ void separateStudentsByAverage(const std::list<Student>& students, std::list<Stu
         }
     }
 }
+
