@@ -13,20 +13,20 @@
 
 class Student {
 public:
-    // Default constructor
+    // konstruktor
     Student();
 
-    // Parameterized constructor
+    // Parameteriz konstr
     Student(const std::string& firstName, const std::string& lastName,
             const std::list<int>& homeworkGrades, int exam);
 
-    // Copy constructor
+ 
     Student(const Student& other);
 
-    // Copy assignment operator
+    // operator
     Student& operator=(const Student& other);
 
-    // Destructor
+    // Destr
     ~Student();
 
     std::string firstName;
