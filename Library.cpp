@@ -1,47 +1,4 @@
-#include "Library.h"
-
-// Default constructor
-Student::Student() : exam(0), avg(0.0), med(0.0) {
-    // Additional initialization code if needed
-}
-
-// Parameterized constructor
-Student::Student(const std::string& firstName, const std::string& lastName,
-                 const std::list<int>& homeworkGrades, int exam)
-    : firstName(firstName), lastName(lastName), homeworkGrades(homeworkGrades),
-      exam(exam), avg(0.0), med(0.0) {
-    // Additional initialization code if needed
-}
-
-// Copy constructor
-Student::Student(const Student& other)
-    : firstName(other.firstName),
-      lastName(other.lastName),
-      homeworkGrades(other.homeworkGrades),
-      exam(other.exam),
-      avg(other.avg),
-      med(other.med) {
-    // Additional initialization code if needed
-}
-
-// Copy assignment operator
-Student& Student::operator=(const Student& other) {
-    if (this != &other) { // Check for self-assignment
-        firstName = other.firstName;
-        lastName = other.lastName;
-        homeworkGrades = other.homeworkGrades;
-        exam = other.exam;
-        avg = other.avg;
-        med = other.med;
-        // Additional assignment code if needed
-    }
-    return *this;
-}
-
-// Destructor
-Student::~Student() {
-    // Cleanup code if needed
-}
+#include "lib.h"
 
 std::list<Student> readStudentData(const std::string& filename) {
     std::ifstream inputFile(filename);
@@ -105,10 +62,21 @@ void saveStudentsToFile(const std::list<Student>& students, const std::string& f
         file << std::setw(10) << student.exam << std::endl;
     }
 }
+void saveStudentsToFile2(const std::list<Student>& students, const std::string& fileName) {
+    std::ofstream file(fileName);
+    file << std::setw(10) << "Vardas" << std::setw(10) << "Pavarde";
+    
+    file << std::setw(10) << "Galut." << std::endl;
 
+    for (const Student& student : students) {
+        file << std::setw(10) << student.firstName << std::setw(10) << student.lastName;
+        
+        file << std::setw(10) << student.avg*0.4+student.exam*0.6 << std::endl;
+    }
+}
 void separateStudentsByAverage(const std::list<Student>& students, std::list<Student>& badStudents, std::list<Student>& goodStudents) {
     for (const Student& student : students) {
-        if (student.avg < 5) {
+        if (student.avg*0.4+student.exam*0.6 < 5) {
             badStudents.push_back(student);
         }
         else {
