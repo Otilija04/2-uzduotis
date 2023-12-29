@@ -13,22 +13,6 @@
 
 class Student {
 public:
-    // konstruktor
-    Student();
-
-    // Parameteriz konstr
-    Student(const std::string& firstName, const std::string& lastName,
-            const std::list<int>& homeworkGrades, int exam);
-
- 
-    Student(const Student& other);
-
-    // operator
-    Student& operator=(const Student& other);
-
-    // Destr
-    ~Student();
-
     std::string firstName;
     std::string lastName;
     std::list<int> homeworkGrades;
@@ -44,6 +28,9 @@ int generateRandomNumber(int n, int n1);
 void generateStudents(int numStudents, std::list<Student>& students);
 
 void saveStudentsToFile(const std::list<Student>& students, const std::string& fileName);
+
+void saveStudentsToFile2(const std::list<Student>& students, const std::string& fileName);
+
 
 void separateStudentsByAverage(const std::list<Student>& students, std::list<Student>& badStudents, std::list<Student>& goodStudents);
 
