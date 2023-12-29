@@ -1,4 +1,4 @@
-#include "Library.h"
+include "lib.h"
 #include <chrono>
 #include <fstream>
 #include <iostream>
@@ -50,8 +50,8 @@ void readAndProcessStudents(const std::string& fileName, double& fileReadDuratio
     fileSortDuration = std::chrono::duration<double>(fileSortEnd - fileSortStart).count();
     std::cout << "studentu rusiavimas i dvi grupes uztruko " << fileSortDuration << " sec." << std::endl;
 
-    saveStudentsToFile(badStudents, "bad" + fileName);
-    saveStudentsToFile(goodStudents, "good" + fileName);
+    saveStudentsToFile2(badStudents, "bad" + fileName);
+    saveStudentsToFile2(goodStudents, "good" + fileName);
 }
 
 int main() {
@@ -89,4 +89,8 @@ int main() {
     }
 
     return 0;
+}
+
+
+
 }
