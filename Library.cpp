@@ -23,7 +23,7 @@ std::list<Student> readStudentData(const std::string& filename) {
             homeworkGrades.push_back(grade);
         }
         inputFile >> exam;
-        students.push_back({ firstName, lastName, homeworkGrades, exam });
+        students.push_back(Student{ firstName, lastName, homeworkGrades, exam, 0.0, 0.0 });
     }
 
     inputFile.close();
@@ -39,7 +39,7 @@ int generateRandomNumber(int n, int n1) {
 
 void generateStudents(int numStudents, std::list<Student>& students) {
     for (int i = 0; i < numStudents; ++i) {
-        students.push_back({ "Vardas" + std::to_string(i), "Pavarde" + std::to_string(i), {}, generateRandomNumber(1, 10) });
+        students.push_back(Student{ "Vardas" + std::to_string(i), "Pavarde" + std::to_string(i), {}, generateRandomNumber(1, 10), 0.0, 0.0 });
         for (int j = 0; j < 7; ++j) {
             students.back().homeworkGrades.push_back(generateRandomNumber(1, 10));
         }
@@ -62,21 +62,23 @@ void saveStudentsToFile(const std::list<Student>& students, const std::string& f
         file << std::setw(10) << student.exam << std::endl;
     }
 }
+
 void saveStudentsToFile2(const std::list<Student>& students, const std::string& fileName) {
     std::ofstream file(fileName);
     file << std::setw(10) << "Vardas" << std::setw(10) << "Pavarde";
-    
+
     file << std::setw(10) << "Galut." << std::endl;
 
     for (const Student& student : students) {
         file << std::setw(10) << student.firstName << std::setw(10) << student.lastName;
-        
-        file << std::setw(10) << student.avg*0.4+student.exam*0.6 << std::endl;
+
+        file << std::setw(10) << student.avg * 0.4 + student.exam * 0.6 << std::endl;
     }
 }
+
 void separateStudentsByAverage(const std::list<Student>& students, std::list<Student>& badStudents, std::list<Student>& goodStudents) {
     for (const Student& student : students) {
-        if (student.avg*0.4+student.exam*0.6 < 5) {
+        if (student.avg * 0.4 + student.exam * 0.6 < 5) {
             badStudents.push_back(student);
         }
         else {
@@ -84,3 +86,4 @@ void separateStudentsByAverage(const std::list<Student>& students, std::list<Stu
         }
     }
 }
+
